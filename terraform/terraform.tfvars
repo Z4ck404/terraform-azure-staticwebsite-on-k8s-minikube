@@ -1,0 +1,5 @@
+prefix = "elbaziblog"
+project = "k8s-articles"
+location = "westeurope"
+username = "azuser"
+env = "demo"

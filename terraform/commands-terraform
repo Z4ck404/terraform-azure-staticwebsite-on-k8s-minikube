@@ -1,0 +1,6 @@
+import existing resource from azure : 
+cmd : terraform import azurerm_resource_group.example ID
+ex: terraform import azurerm_resource_group.k8s-blog /subscriptions/f90c892c-5122-4368-8629-24033e147e35/resourceGroups/k8s-blog
+
+
+
