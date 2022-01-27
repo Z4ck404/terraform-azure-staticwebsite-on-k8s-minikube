@@ -1,4 +1,5 @@
 
+#TODO add encryption to the cr.
 resource "azurerm_container_registry" "acr" {
   name                = "${var.prefix}"
   resource_group_name = var.rg-name
