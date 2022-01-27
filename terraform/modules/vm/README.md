@@ -1,4 +1,3 @@
-# AWS S3 static website bucket
 
 This module provisions an AZURE virtual machine with minikube installed.
 
