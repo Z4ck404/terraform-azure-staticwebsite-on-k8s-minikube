@@ -77,15 +77,16 @@ resource "azurerm_storage_account" "mystorageaccount" {
   }
 }
 
-# Create (and display) an SSH key
+# Create (and display) (export to a local file) an SSH key
 resource "tls_private_key" "ssh_key" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 
-output "tls_private_key" {
-  value     = tls_private_key.ssh_key.private_key_pem
-  sensitive = true
+resource "local_file" "keypath" {
+    content     = tls_private_key.ssh_key.private_key_pem
+    filename = "privatekey.pem"
+    file_permission = "0400"
 }
 
 # Create virtual machine
@@ -110,11 +111,11 @@ resource "azurerm_linux_virtual_machine" "vm" {
   }
 
   computer_name                   = "${var.prefix}-vm"
-  admin_username                  = "${var.username}"
+  admin_username                  = var.username
   disable_password_authentication = true
 
   admin_ssh_key {
-    username   = "${var.username}"
+    username   = var.username
     public_key = tls_private_key.ssh_key.public_key_openssh
   }
 
@@ -126,4 +127,26 @@ resource "azurerm_linux_virtual_machine" "vm" {
     environment = "${var.env}",
     project = "${var.project}"
   }
+}
+
+resource "null_resource" "provision_vm" {
+
+  ## Copy files to VM :
+  provisioner "file" {
+    source = "/Users/zakariaelbazi/Documents/GitHub/zackk8s/kubernetes" #TODO move to variables.
+    destination = "/home/azuser"
+
+    connection {
+      type = "ssh"
+      user = var.username
+      host = azurerm_public_ip.ip.ip_address
+      private_key = tls_private_key.ssh_key.private_key_pem
+    }
+    
+  }
+
+  depends_on = [
+    azurerm_linux_virtual_machine.vm,
+  ]
+  
 }

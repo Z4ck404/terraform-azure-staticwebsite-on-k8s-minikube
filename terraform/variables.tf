@@ -1,8 +1,8 @@
 variable "prefix" {
-  type = string 
+  type = string
 }
 variable "env" {
-  type = string
+  type    = string
   default = "demo"
 }
 variable "project" {
