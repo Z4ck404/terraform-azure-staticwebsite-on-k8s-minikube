@@ -129,7 +129,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   }
 }
 
-resource "null_resource" "provision_vm" {
+resource "null_resource" "copy_files" {
 
   ## Copy files to VM :
   provisioner "file" {
@@ -142,11 +142,34 @@ resource "null_resource" "provision_vm" {
       host = azurerm_public_ip.ip.ip_address
       private_key = tls_private_key.ssh_key.private_key_pem
     }
-    
   }
 
   depends_on = [
     azurerm_linux_virtual_machine.vm,
   ]
-  
+}
+
+resource "null_resource" "install_minikube_script" {
+
+  connection {
+      type = "ssh"
+      user = var.username
+      host = azurerm_public_ip.ip.ip_address
+      private_key = tls_private_key.ssh_key.private_key_pem
+    }
+  ## run installtion script in the vm :
+  provisioner "remote-exec" {
+    inline = [
+      "sudo chmod +x /home/azuser/kubernetes/install_minikube.sh"
+    ]
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "sudo /home/azuser/kubernetes/install_minikube.sh"
+    ] 
+  }
+
+  depends_on = [
+    null_resource.copy_files,
+  ]
 }
