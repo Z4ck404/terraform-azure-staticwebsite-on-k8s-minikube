@@ -33,7 +33,15 @@ resource "null_resource" "configure-vm" {
       "./minikube start --driver=docker"
     ]
   }
+}
 
+resource "null_resource" "configure-vm-2" {
+    connection {
+      type = "ssh"
+      user = var.username
+      host = var.ip_address
+      private_key = var.tls_private_key
+    }
   ## deploy to kubernetes
     provisioner "remote-exec" {
     inline = [
