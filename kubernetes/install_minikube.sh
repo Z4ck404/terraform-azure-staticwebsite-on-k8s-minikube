@@ -11,7 +11,6 @@ install () {
 		echo "Installing kubectl version $version"
 		curl -LO "https://storage.googleapis.com/kubernetes-release/release/$version/bin/linux/amd64/kubectl"
 		chmod +x kubectl
-		mv kubectl "$PREFIX"
 	else
 		echo "kubetcl is already installed"
 	fi
@@ -19,7 +18,6 @@ install () {
 	if ! command minikube >/dev/null 2>&1; then
 		curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 		chmod +x minikube
-		mv minikube "$PREFIX"
 	else
 		echo "minikube is already installed"
 	fi
