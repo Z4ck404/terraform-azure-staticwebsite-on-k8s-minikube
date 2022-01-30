@@ -1,21 +1,5 @@
-resource "null_resource" "copy_files" {
 
-  ## Copy files to VM :
-  provisioner "file" {
-    source = "/Users/zakariaelbazi/Documents/GitHub/zackk8s/kubernetes" #TODO move to variables.
-    destination = "/home/${var.username}"
-
-    connection {
-      type = "ssh"
-      user = var.username
-      host = var.ip_address
-      private_key = var.tls_private_key
-    }
-  }
-
-}
-
-resource "null_resource" "install_minikube_script" {
+resource "null_resource" "configure-vm" {
 
   connection {
       type = "ssh"
@@ -23,31 +7,37 @@ resource "null_resource" "install_minikube_script" {
       host = var.ip_address
       private_key = var.tls_private_key
     }
+
+  ## Copy files to VM :
+  provisioner "file" {
+    source = "/Users/zakariaelbazi/Documents/GitHub/zackk8s/kubernetes" #TODO move to variables.
+    destination = "/home/${var.username}"
+  }
+
   ## install docker on remote
   provisioner "remote-exec" {
     inline = [
       "curl -fsSL https://get.docker.com -o get-docker.sh",
       "sudo chmod +x /home/${var.username}/get-docker.sh",
       "sh /home/${var.username}/get-docker.sh",
-      ## TODO ! The command bellow is a temporary fix
+      ## TODO ! The command bellow is a temporary 
       "sudo chmod 666 /var/run/docker.sock" 
     ] 
   }
-  ## install minikube
+
+  ## install & start minikube
   provisioner "remote-exec" {
     inline = [
       "sudo chmod +x /home/${var.username}/kubernetes/install_minikube.sh",
-      "sh /home/${var.username}/kubernetes/install_minikube.sh"
-    ]
-  }
-
-   provisioner "remote-exec" {
-    inline = [
+      "sh /home/${var.username}/kubernetes/install_minikube.sh",
       "./minikube start --driver=docker"
     ]
   }
+  ## deploy to kubernetes
+   provisioner "remote-exec" {
+    inline = [
+      
+    ]
+  }
 
-  depends_on = [
-    null_resource.copy_files,
-  ]
 }
