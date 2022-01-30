@@ -43,7 +43,7 @@ resource "null_resource" "install_minikube_script" {
 
    provisioner "remote-exec" {
     inline = [
-      "./minikube strat --driver=docker"
+      "./minikube start --driver=docker"
     ]
   }
 
