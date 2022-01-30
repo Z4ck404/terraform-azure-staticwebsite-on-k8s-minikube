@@ -33,11 +33,5 @@ resource "null_resource" "configure-vm" {
       "./minikube start --driver=docker"
     ]
   }
-  ## deploy to kubernetes
-   provisioner "remote-exec" {
-    inline = [
-      
-    ]
-  }
 
 }
