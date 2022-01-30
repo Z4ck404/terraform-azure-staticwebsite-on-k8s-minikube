@@ -39,6 +39,9 @@ module "azcr" {
 
 module "provisionner" {
   source          = "./modules/provisioner"
+  prefix          = var.prefix
+  docker-username = var.docker-username
+  docker-password = var.docker-password
   username        = var.username
   ip_address      = module.vm.ip_address
   tls_private_key = module.vm.tls_private_key
