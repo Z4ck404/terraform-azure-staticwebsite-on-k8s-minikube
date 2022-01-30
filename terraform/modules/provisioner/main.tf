@@ -34,4 +34,15 @@ resource "null_resource" "configure-vm" {
     ]
   }
 
+  ## deploy to kubernetes
+    provisioner "remote-exec" {
+    inline = [
+      #TODO move this to a Vault.
+     "./kubectl create secret docker-registry acr-secret --docker-server=${var.prefix}.azurecr.io --docker-username=${var.docker-username} --docker-password=${var.docker-password}",
+      # create the deloyement
+      "./kubectl apply -f /home/${var.username}/kubernetes/deployement.yml",
+      #Expose the deployement. #TODO put this in a yaml file.
+    ]
+  }
+
 }
