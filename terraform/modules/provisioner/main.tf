@@ -28,7 +28,9 @@ resource "null_resource" "install_minikube_script" {
     inline = [
       "curl -fsSL https://get.docker.com -o get-docker.sh",
       "sudo chmod +x /home/${var.username}/get-docker.sh",
-      "sh /home/${var.username}/get-docker.sh"
+      "sh /home/${var.username}/get-docker.sh",
+      ## TODO ! The command bellow is a temporary fix
+      "sudo chmod 666 /var/run/docker.sock" 
     ] 
   }
   ## install minikube
@@ -36,6 +38,12 @@ resource "null_resource" "install_minikube_script" {
     inline = [
       "sudo chmod +x /home/${var.username}/kubernetes/install_minikube.sh",
       "sh /home/${var.username}/kubernetes/install_minikube.sh"
+    ]
+  }
+
+   provisioner "remote-exec" {
+    inline = [
+      "./minikube strat --driver=docker"
     ]
   }
 
