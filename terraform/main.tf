@@ -36,3 +36,10 @@ module "azcr" {
   location = azurerm_resource_group.rg.location
   rg-name  = azurerm_resource_group.rg.name
 }
+
+module "provisionner" {
+  source          = "./modules/provisioner"
+  username        = var.username
+  ip_address      = module.vm.ip_address
+  tls_private_key = module.vm.tls_private_key
+}
