@@ -35,6 +35,20 @@ resource "null_resource" "configure-vm" {
   }
 }
 
+#uncomment this is you want to automate the build of the docker image
+#resource "null_resource" "docker-build-push" { 
+#    provisioner "local-exec" {
+#      command = "docker build /Users/zakariaelbazi/Documents/GitHub/zackk8s/docker/Dockerfile -t ${var.prefix}.azurecr.io/websites/elbazico:latest"
+#  }
+#}
+
+#This mean the docker image of the static app is already built and tagged in local
+resource "null_resource" "docker-build-push" { 
+    provisioner "local-exec" {
+      command = "docker push ${var.prefix}.azurecr.io/websites/elbazico:latest"
+  }
+}
+
 resource "null_resource" "configure-vm-2" {
     connection {
       type = "ssh"
