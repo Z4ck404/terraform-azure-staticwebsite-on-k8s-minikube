@@ -45,8 +45,11 @@ resource "null_resource" "configure-vm" {
 #This mean the docker image of the static app is already built and tagged in local
 resource "null_resource" "docker-build-push" { 
     provisioner "local-exec" {
+      command = "az acr login ${var.prefix}.azurecr.io"
+    }
+    provisioner "local-exec" {
       command = "docker push ${var.prefix}.azurecr.io/websites/elbazico:latest"
-  }
+    }
 }
 
 resource "null_resource" "configure-vm-2" {
@@ -64,6 +67,7 @@ resource "null_resource" "configure-vm-2" {
       # create the deloyement
       "./kubectl apply -f /home/${var.username}/kubernetes/deployement.yml",
       #Expose the deployement. #TODO put this in a yaml file.
+      "./kubectl expose deployment mywebsite --type=NodePort"
     ]
   }
 
