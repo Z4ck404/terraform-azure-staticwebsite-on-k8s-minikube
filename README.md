@@ -1,7 +1,7 @@
 # Static app on k8s x Azure.
 **Terraform**'ing the deployement of a static wesbite in **azure** with **kubernetes**.
 > Medium articles behind this repo : 
->  - I deployed my static website with Kubernetes on Azure … because why not !
+>  - [I deployed my static website with Kubernetes on Azure … because why not!](https://medium.com/aws-tip/i-deployed-my-static-website-with-kubernetes-on-azure-because-why-not-39a501399fd7)
 >  - I deployed my static website with Kubernetes on Azure using Terraform … because why not!
 
 ## Requirements
