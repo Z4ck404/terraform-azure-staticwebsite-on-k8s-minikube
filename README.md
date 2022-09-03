@@ -62,8 +62,8 @@ terraform apply
 ```
 
 ## TODO 
-[] Build and push static website in a github action.
-[] Add a make file.
+- [] Build and push static website in a github action.
+- [] Add a make file.
 
 
 ## Contributing
