@@ -61,8 +61,15 @@ then
 terraform apply
 ```
 
+## TODO 
+[] Build and push static website in a github action.
+[] Add a make file.
+
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+
