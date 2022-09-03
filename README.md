@@ -63,6 +63,7 @@ terraform apply
 
 ## TODO 
 - [] Build and push static website in a github action.
+- [] remove static website file from this repo and make the action [clone](https://github.com/Z4ck404/z4ck404.github.io) it
 - [] Add a make file.
 
 
