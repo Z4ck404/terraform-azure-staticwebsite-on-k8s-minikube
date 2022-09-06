@@ -1,6 +1,6 @@
 FROM nginx:alpine
 
-ARG giturl="https://github.com/Z4ck404/z4ck404.github.io"
+ARG giturl
 
 RUN apk add --no-cache git
 RUN git clone $giturl temp
