@@ -21,11 +21,7 @@
 ## Usage
 
 ```bash
-terraform init
-```
-then 
-```bash
-terraform apply
+TODO
 ```
 
 ## TODO 
@@ -33,9 +29,6 @@ terraform apply
 - [] remove static website file from this repo and make the action [clone](https://github.com/Z4ck404/z4ck404.github.io) it
 - [] Add a make file.
 
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
