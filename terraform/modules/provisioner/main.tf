@@ -43,16 +43,16 @@ resource "null_resource" "configure-vm" {
 #}
 
 #This mean the docker image of the static app is already built and tagged in local
-resource "null_resource" "docker-build-push" { 
-    provisioner "local-exec" {
-      command = "az acr login -n ${var.prefix}.azurecr.io"
-    }
-    provisioner "local-exec" {
-      command = "docker push ${var.prefix}.azurecr.io/websites/elbazico:latest"
-    }
-}
+# resource "null_resource" "docker-build-push" { 
+#     provisioner "local-exec" {
+#       command = "az acr login -n ${var.prefix}"
+#     }
+#     provisioner "local-exec" {
+#       command = "docker push ${var.prefix}.azurecr.io/websites/elbazico:latest"
+#     }
+# }
 
-resource "null_resource" "configure-vm-2" {
+resource "null_resource" "configure-vm-1" {
     connection {
       type = "ssh"
       user = var.username

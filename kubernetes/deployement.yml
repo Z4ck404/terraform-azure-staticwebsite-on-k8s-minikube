@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: z4
-        image: elbaziblog.azurecr.io/websites/z4:latest
+        image: elbaziblog.azurecr.io/websites/elbazico:latest
         resources:
           limits:
             memory: "128Mi"
