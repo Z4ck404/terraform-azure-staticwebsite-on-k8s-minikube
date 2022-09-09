@@ -51,7 +51,7 @@ module "provisionner" {
   tls_private_key = module.vm.tls_private_key
 
   depends_on = [
-    module.vm.ip_address,
+    module.vm,
     data.external.kubesecret
   ]
 }
