@@ -12,7 +12,7 @@ spec:
         app: mywebsite
     spec:
       containers:
-      - name: z4
+      - name: elbazico
         image: elbaziblog.azurecr.io/websites/elbazico:latest
         resources:
           limits:
