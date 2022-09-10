@@ -1,17 +1,20 @@
 GIT_REPO ?="https://github.com/Z4ck404/z4ck404.github.io"
 NAME = "elbazico"
+AZURECR = "elbaziblog"
 
+_login:
+	az acr login -n ${AZURECR}
 
 build:
 
 	@if [ "${GIT_REPO}" = "" ]; then \
-		docker build -t elbazico:latest -f docker/Dockerfile .  ;\
+		docker build --platform linux -t elbazico:latest -f docker/Dockerfile .  ;\
 	else \
-		docker build -t ${NAME}:latest -f docker/Dockerfile . --build-arg giturl=${GIT_REPO} ;\
+		docker build --platform linux -t ${NAME}:latest -f docker/Dockerfile . --build-arg giturl=${GIT_REPO} ;\
 	fi
 
-push:
-	docker tag elbazico elbaziblog.azurecr.io/websites/elbazico:latest && docker push elbaziblog.azurecr.io/websites/elbazico:latest 
+push: _login
+	docker tag elbazico ${AZURECR}.azurecr.io/websites/elbazico:latest && docker push ${AZURECR}.azurecr.io/websites/elbazico:latest 
 
 run: 
-	docker run -p 80:80 zack:latest
+	docker run -p 80:80 ${NAME}:latest
