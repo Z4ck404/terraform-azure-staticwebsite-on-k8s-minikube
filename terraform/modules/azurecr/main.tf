@@ -7,8 +7,8 @@ resource "azurerm_container_registry" "acr" {
   sku                 = "Standard"
   admin_enabled       = false
   tags = {
-    environment = "${var.env}",
-    project = "${var.project}"
+    environment = var.env,
+    project = var.project
   }
 
 }
