@@ -1,4 +1,4 @@
-# Static app on k8s x Azure.
+# Static app on k8s x Azure (Minikube).
 **Terraform**'ing the deployment of a [static website](https://github.com/Z4ck404/z4ck404.github.io) in **azure** with **kubernetes**.
 > Medium articles behind this repo : 
 >  - [I deployed my static website with Kubernetes on Azure … because why not!](https://medium.com/aws-tip/i-deployed-my-static-website-with-kubernetes-on-azure-because-why-not-39a501399fd7)
