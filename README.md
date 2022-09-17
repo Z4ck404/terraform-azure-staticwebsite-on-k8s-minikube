@@ -32,6 +32,7 @@ cd terraform && make apply
 ## TODO 
 - [ ] Build and push static website in a github action.
 - [ ] Make the terraform build and push the image once the `azurecr` is created.
+- [ ] Add an `AKS` version.
 
 
 ## License
