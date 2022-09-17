@@ -8,9 +8,9 @@ _login:
 build:
 
 	@if [ "${GIT_REPO}" = "" ]; then \
-		docker build --platform linux -t elbazico:latest -f docker/Dockerfile .  ;\
+		docker buildx build -t ${NAME}:latest -o type=image --platform=linux/amd64 -f docker/Dockerfile .  ;\
 	else \
-		docker build --platform linux -t ${NAME}:latest -f docker/Dockerfile . --build-arg giturl=${GIT_REPO} ;\
+		docker buildx build -t ${NAME}:latest -o type=image --platform=linux/amd64 -f docker/Dockerfile . --build-arg giturl=${GIT_REPO} ;\
 	fi
 
 push: _login
