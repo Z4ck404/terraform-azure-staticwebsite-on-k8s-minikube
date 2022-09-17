@@ -70,5 +70,8 @@ resource "null_resource" "configure-vm-1" {
       "./kubectl expose deployment mywebsite --type=NodePort"
     ]
   }
+  depends_on = [
+    null_resource.configure-vm
+  ]
 
 }

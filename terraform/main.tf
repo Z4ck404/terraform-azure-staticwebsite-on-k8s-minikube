@@ -41,7 +41,7 @@ data "external" "kubesecret" {
   program = ["/Users/zakariaelbazi/Documents/GitHub/zackk8s/kubernetes/secret-acr.sh"]
 }
 
-module "provisionner-1" {
+module "provisionner-2" {
   source          = "./modules/provisioner"
   prefix          = var.prefix
   docker-username = data.external.kubesecret.result.docker_username
