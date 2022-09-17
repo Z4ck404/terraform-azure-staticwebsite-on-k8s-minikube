@@ -20,14 +20,18 @@
 
 ## Usage
 
+1. build and push the docker image : 
 ```bash
-TODO
+make build && make push
+```
+2. create the terraform ressources : 
+```bash
+cd terraform && make apply
 ```
 
 ## TODO 
-- [] Build and push static website in a github action.
-- [] remove static website file from this repo and make the action [clone](https://github.com/Z4ck404/z4ck404.github.io) it
-- [] Add a make file.
+- [ ] Build and push static website in a github action.
+- [ ] Make the terraform build and push the image once the `azurecr` is created.
 
 
 ## License
