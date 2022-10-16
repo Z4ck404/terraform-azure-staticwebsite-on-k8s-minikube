@@ -14,3 +14,8 @@ variable "location" {
 variable "username" {
   type = string
 }
+variable "secret_acr_script_path" {
+  type = string
+  description = "the path to the secret acr script"
+  default = "../kubernetes/secret-acr.sh"
+}

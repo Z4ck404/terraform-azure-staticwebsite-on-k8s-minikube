@@ -37,8 +37,20 @@ module "azcr" {
   rg-name  = azurerm_resource_group.rg.name
 }
 
+resource "null_resource" "docker-build" {
+  provisioner "local-exec" {
+    command = "cd .. && make build"
+  }
+  provisioner "local-exec" {
+    command = "cd .. && make push"
+  }
+  depends_on = [
+    module.azcr
+  ]
+}
+
 data "external" "kubesecret" {
-  program = ["/Users/zakariaelbazi/Documents/GitHub/zackk8s/kubernetes/secret-acr.sh"]
+  program = [var.secret_acr_script_path]
 }
 
 module "provisionner-1" {
