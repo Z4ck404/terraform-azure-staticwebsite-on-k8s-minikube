@@ -67,3 +67,4 @@ module "provisionner-1" {
     data.external.kubesecret
   ]
 }
+resource "null_resource" "example" {}
