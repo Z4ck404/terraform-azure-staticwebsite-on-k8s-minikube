@@ -38,6 +38,4 @@ cd terraform && make apply
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
-## Test action PR (DO NOT MERGE)
-
 
