@@ -41,7 +41,7 @@ jobs:
       working-directory: terraform
       shell: bash
     
-    - run : echo "$ARM_CLIENT_SECRET"
+    - run : echo "arm is $ARM_CLIENT_SECRET"
     - name: Terraform Plan
       id: plan
       run: |
