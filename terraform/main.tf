@@ -67,4 +67,4 @@ module "provisionner-1" {
     data.external.kubesecret
   ]
 }
-#adding a comment to trigger the CI
+#on purpose to trigger the actions
