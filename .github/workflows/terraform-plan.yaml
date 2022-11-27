@@ -57,7 +57,7 @@ jobs:
 
     - uses: actions/github-script@v6
       with:
-        github-token: ${{ inputs.GITHUB_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const fs = require("fs");
           const plan = fs.readFileSync("/tmp/plan.txt", "utf8");
@@ -84,7 +84,7 @@ jobs:
             ${plans[i]}
             \`\`\`
             </details>
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ inputs.working-directory }}\`, Workflow: \`${{ github.workflow }}\`*`;   
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*`;   
 
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
