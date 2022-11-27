@@ -41,6 +41,11 @@ jobs:
       working-directory: terraform
       shell: bash
     
+    - name: make sure env vars are there
+      run : |
+        export ARM_CLIENT_ID=${{ secrets.AZURE_CLIENT_ID }} 
+        export ARM_CLIENT_SECRET=${{ secrets.CLIENT_SECRET }}
+        export ARM_TENANT_ID="e9e9f29c-1e90-4c4f-99d9-43d6e2806804"
     - run : echo "arm is $ARM_CLIENT_SECRET"
     - name: Terraform Plan
       id: plan
