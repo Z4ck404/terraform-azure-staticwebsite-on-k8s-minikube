@@ -51,14 +51,14 @@ jobs:
     
     - name: Terraform Show
       id: show
-      run: terraform show -no-color tf.plan 2>&1 > /tmp/plan.txt
+      run: terraform show -no-color out.plan 2>&1 > /tmp/plan.txt
       working-directory: terraform
       shell: bash
 
     - name: Comment PR
       uses: peter-evans/create-or-update-comment@v1
       with:
-        issue-number: 25
+        issue-number: ${{ github.event.number }}
         body: ${{steps.plan.outputs.stdout}}
 
 
