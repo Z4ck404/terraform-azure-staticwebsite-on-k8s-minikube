@@ -6,6 +6,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  id-token: write
 
 jobs: 
   terraform:
@@ -26,7 +27,7 @@ jobs:
         tenant-id: "e9e9f29c-1e90-4c4f-99d9-43d6e2806804"
         subscription-id: "f90c892c-5122-4368-8629-24033e147e35"
         enable-AzPSSession: true 
-        
+
     - name: Terraform Init
       id: init
       run: terraform init
