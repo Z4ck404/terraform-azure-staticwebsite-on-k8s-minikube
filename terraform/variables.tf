@@ -3,7 +3,6 @@ variable "prefix" {
 }
 variable "env" {
   type    = string
-  default = "demo"
 }
 variable "project" {
   type = string
