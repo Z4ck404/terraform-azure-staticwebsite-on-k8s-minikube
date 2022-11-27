@@ -49,10 +49,22 @@ jobs:
       working-directory: terraform
       shell: bash
 
-    - name: Comment PR
-      uses: peter-evans/create-or-update-comment@v1
+    - name: Find Comment
+      uses: peter-evans/find-comment@v2
+      id: fc
       with:
         issue-number: ${{ github.event.pull_request.number }}
-        body: ${{steps.plan.outputs.stdout}}
+        comment-author: 'github-actions[bot]'
+        body-includes: Build output
+
+    - name: Create or update comment
+      uses: peter-evans/create-or-update-comment@v2
+      with:
+        comment-id: ${{ steps.fc.outputs.comment-id }}
+        issue-number: ${{ github.event.pull_request.number }}
+        body: |
+          Build output
+          ${{ steps.build.outputs.build-log }}
+        edit-mode: replace
 
 
