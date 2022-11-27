@@ -21,7 +21,6 @@ jobs:
     - name: Terraform Init
       id: init
       run: terraform init
-      working-directory: terraform
       shell: bash
     
     - name: Terraform Plan
@@ -33,7 +32,6 @@ jobs:
         ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         ARM_SUBSCRIPTION_ID: "f90c892c-5122-4368-8629-24033e147e35"
         ARM_TENANT_ID: "e9e9f29c-1e90-4c4f-99d9-43d6e2806804"
-      working-directory: terraform
       shell: bash
 
     - name: Comment PR
