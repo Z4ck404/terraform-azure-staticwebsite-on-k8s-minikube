@@ -1,13 +1,22 @@
 name: 'Terraform - plan'
 
 on:
-  - push
+  push:
+    branches:
+    - main
+    paths: 
+    - terraform/**
+  pull_request:
+    branches:
+    - main
+    paths: 
+    - terraform/**
 
 env:
   ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }} 
   ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-  ARM_SUBSCRIPTION_ID: "f90c892c-5122-4368-8629-24033e147e35"
-  ARM_TENANT_ID: "e9e9f29c-1e90-4c4f-99d9-43d6e2806804"
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }} 
 
 
 permissions:
@@ -31,8 +40,8 @@ jobs:
       uses: azure/login@v1
       with:
         client-id: ${{ secrets.AZURE_CLIENT_ID }} 
-        tenant-id: "e9e9f29c-1e90-4c4f-99d9-43d6e2806804"
-        subscription-id: "f90c892c-5122-4368-8629-24033e147e35"
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }} 
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
         enable-AzPSSession: true 
 
     - name: Terraform Init
@@ -56,6 +65,7 @@ jobs:
       shell: bash
 
     - uses: actions/github-script@v6
+      if: github.event_name == 'pull_request'
       with:
         github-token: ${{ secrets.GH_TOKEN }}
         script: |
@@ -87,7 +97,7 @@ jobs:
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*`;   
 
             await github.rest.issues.createComment({
-              issue_number: context.payload.number,
+              issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: output

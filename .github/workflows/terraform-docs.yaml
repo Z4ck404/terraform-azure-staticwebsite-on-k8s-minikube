@@ -1,6 +1,15 @@
 name: Generate terraform docs
 on:
-  - push
+  push:
+    branches:
+    - main
+    paths: 
+    - terraform/**
+  pull_request:
+    branches:
+    - main
+    paths: 
+    - terraform/**
 
 jobs:
   docs:
