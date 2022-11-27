@@ -22,7 +22,7 @@ jobs:
     - name: 'Az CLI login'
       uses: azure/login@v1
       with:
-        client-id: ${{ secrets.CLIENT_ID }} 
+        client-id: ${{ secrets.AZURE_CLIENT_ID }} 
         tenant-id: "e9e9f29c-1e90-4c4f-99d9-43d6e2806804"
         subscription-id: "f90c892c-5122-4368-8629-24033e147e35"
     - name: Terraform Init
@@ -36,7 +36,7 @@ jobs:
       run: |
         terraform plan -input=false -no-color -out tf.plan
       env:
-        ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }} 
+        ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }} 
         ARM_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         ARM_SUBSCRIPTION_ID: "f90c892c-5122-4368-8629-24033e147e35"
         ARM_TENANT_ID: "e9e9f29c-1e90-4c4f-99d9-43d6e2806804"
