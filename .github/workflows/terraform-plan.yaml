@@ -1,4 +1,4 @@
-name: 'Terraform - Staging'
+name: 'Terraform - plan'
 on:
   push:
     branches:
