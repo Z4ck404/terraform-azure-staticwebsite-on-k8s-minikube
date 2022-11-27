@@ -1,15 +1,7 @@
 name: 'Terraform - plan'
+
 on:
-  push:
-    branches:
-    - main
-    paths: 
-    - terraform/**
-  pull_request:
-    branches:
-    - main
-    paths: 
-    - terraform/**
+  - push
 
 permissions:
   contents: read
